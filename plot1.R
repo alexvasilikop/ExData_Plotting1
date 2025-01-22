@@ -1,9 +1,5 @@
-#download data
-if(! file.exists("/home/alex/ExData_Plotting1/data.zip")){
-  download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip", destfile = "/home/alex/ExData_Plotting1/data.zip")
-  zipped.file <- "/home/alex/ExData_Plotting1/data.zip"
-  unzip(zipfile = "/home/alex/ExData_Plotting1/data.zip", exdir = "/home/alex/ExData_Plotting1/data")
-}
+#download data if not already downloaded
+source("./download_data.R")
 
 #change to new dir
 setwd("/home/alex/ExData_Plotting1/data")
@@ -21,6 +17,6 @@ Global_active_power <- Global_active_power[!is.na(Global_active_power)]
 
 #make plot 1 in a png Graphics Device
 png(filename = "/home/alex/ExData_Plotting1/plot1.png", height = 480 , width = 480)
-hist(Global_active_power, col = "red", main = "")
+hist(Global_active_power, xlab = "Global Active Power (kilowatts)", col = "red", main = "")
 title("Global active power")
 dev.off()

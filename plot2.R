@@ -1,9 +1,5 @@
-#download data
-if(! file.exists("/home/alex/ExData_Plotting1/data.zip")){
-  download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip", destfile = "/home/alex/ExData_Plotting1/data.zip")
-  zipped.file <- "/home/alex/ExData_Plotting1/data.zip"
-  unzip(zipfile = "/home/alex/ExData_Plotting1/data.zip", exdir = "/home/alex/ExData_Plotting1/data")
-}
+#download data if not already downloaded
+source("./download_data.R")
 
 #change to new dir
 setwd("/home/alex/ExData_Plotting1/data")
@@ -11,7 +7,7 @@ setwd("/home/alex/ExData_Plotting1/data")
 #read dataset
 df <- read.table("/home/alex/ExData_Plotting1/data/household_power_consumption.txt",sep = ";", header = TRUE)
 
-#Add DateTime col generated with with strptime and as.Date()
+#Add DateTime col generated with with strptime and paste
 df$DateTime <- strptime(paste(df$Date, df$Time), "%d/%m/%Y %H:%M:%S")
 print(class(df$DateTime))
 
@@ -21,6 +17,7 @@ df <- df[!is.na(df$Global_active_power),]
 
 #convert the POSIXlt objects to POSIXct, which is numeric internally and works with axis()
 df$DateTime <- as.POSIXct(df$DateTime)
+print(class(df$DateTime))
 # Calculate indices for first, middle, and last elements
 first <- df$DateTime[1] # First DateTime value
 middle <- df$DateTime[nrow(df)/2] # Middle DateTime value
