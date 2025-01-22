@@ -16,7 +16,7 @@ Global_active_power <- as.numeric(df$Global_active_power[df$Date>=as.Date("2007-
 Global_active_power <- Global_active_power[!is.na(Global_active_power)]
 
 #make plot 1 in a png Graphics Device
-png(filename = "/home/alex/ExData_Plotting1/plot1.png", height = 480 , width = 480)
+png(filename = "/home/alex/ExData_Plotting1/plot1.png", height = 480 , width = 480, units = "px")
 hist(Global_active_power, xlab = "Global Active Power (kilowatts)", col = "red", main = "")
 title("Global active power")
 dev.off()
